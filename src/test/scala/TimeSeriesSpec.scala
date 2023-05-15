@@ -4,11 +4,16 @@
   * Run coverage report with sbt using command:
   * sbt ';coverageEnabled;test'
   */
-
 import org.apache.spark.sql.{DataFrame, SQLContext, SQLImplicits, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.types.{StringType, IntegerType, DoubleType, StructField, StructType}
+import org.apache.spark.sql.types.{
+  DoubleType,
+  IntegerType,
+  StringType,
+  StructField,
+  StructType
+}
 import org.apache.spark.sql.Row
 
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, Outcome}
@@ -54,16 +59,21 @@ class TimeSeriesSpec
       ("T6", "Y", 3.0)
     );
 
-    ts_schema = StructType(Array(
-      StructField("id", StringType, true),
-      StructField("category", StringType, true),
-      StructField("ts", DoubleType, true)
-    ))
+    ts_schema = StructType(
+      Array(
+        StructField("id", StringType, true),
+        StructField("category", StringType, true),
+        StructField("ts", DoubleType, true)
+      )
+    )
 
-    val testrdd:RDD[(String, String, Double)] = ss.sparkContext.parallelize(rawData);
-    val rowRDD = testrdd.map(attributes => Row(attributes._1, attributes._2, attributes._3))
+    val testrdd: RDD[(String, String, Double)] =
+      ss.sparkContext.parallelize(rawData);
+    val rowRDD = testrdd.map(attributes =>
+      Row(attributes._1, attributes._2, attributes._3)
+    )
 
-    testDF = ss.createDataFrame(rowRDD,ts_schema)
+    testDF = ss.createDataFrame(rowRDD, ts_schema)
 
   }
 

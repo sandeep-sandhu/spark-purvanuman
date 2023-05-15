@@ -8,8 +8,8 @@ import org.apache.spark.sql.functions.{col, lag}
 // implement spark ml evaluation methods - MAE, MAD, MAPE, MASE, sMAPE
 
 /**
- * Abstraction for time-series results for a given model.
- */
+  * Abstraction for time-series results for a given model.
+  */
 trait ModelEvaluation extends Serializable {
 
   // TODO: implement evaluation metrics:
@@ -28,6 +28,5 @@ trait ModelEvaluation extends Serializable {
 
   /** Field in "predictions" which gives the true label of each instance (if available). */
   def labelCol: String
-
 
 }

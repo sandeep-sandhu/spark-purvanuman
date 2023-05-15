@@ -1,5 +1,3 @@
-
-
 object SparkApp {
 
   val appName = "Spark TimeSeries Application"
@@ -9,7 +7,5 @@ object SparkApp {
   Usage: SparkApp
   """
 
-  def main(args: Array[String]): Unit = {
-
-  }
+  def main(args: Array[String]): Unit = {}
 }
